@@ -1,3 +1,5 @@
+[![Build Status][travis-img]][travis]
+
 # java-experiment
 Little experiments on Java features
 
