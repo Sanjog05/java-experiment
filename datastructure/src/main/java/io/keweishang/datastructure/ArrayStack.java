@@ -1,11 +1,10 @@
+package io.keweishang.datastructure;
 
 /**
  * Stack array based generic implementation
- * 
- * @author kewei
  *
- * @param <U>
- *            the type of element stored in stack
+ * @param <U> the type of element stored in stack
+ * @author kshang
  */
 public class ArrayStack<U> {
 
@@ -40,7 +39,7 @@ public class ArrayStack<U> {
 
     /**
      * Resize array to capacity
-     * 
+     *
      * @param capacity
      */
     private void resize(int capacity) {

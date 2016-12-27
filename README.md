@@ -8,7 +8,3 @@ Little experiments on Java features
   2. ensure that the buffer still has >= n bytes remaining unread
     - if it has, read it, update the remaining unread counter
     - if not, you can move the remaining unread bytes to the front of ByteBuffer (compact), then write to the end of ByteBuffer from a Channel.
-
-    
-# To do
-- Read BufferedInputStream implementation

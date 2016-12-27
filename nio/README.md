@@ -1,4 +1,4 @@
- Test how the following works:
+SocketChannelClient and SocketChannelClient test how the following works:
  
  - How to read to ByteBuffer from Channel
  

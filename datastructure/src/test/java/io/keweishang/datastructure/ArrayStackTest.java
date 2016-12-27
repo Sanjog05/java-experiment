@@ -1,6 +1,11 @@
+package io.keweishang.datastructure;
+
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
+/**
+ * Created by kshang on 27/12/2016.
+ */
 public class ArrayStackTest {
 
     @Test
@@ -12,8 +17,8 @@ public class ArrayStackTest {
         Assertions.assertThat(stack.pop()).isEqualTo("abc");
     }
 
-    
-    
+
+
     @Test
     public void test_is_empty() {
         ArrayStack<String> stack = new ArrayStack<>(3);
