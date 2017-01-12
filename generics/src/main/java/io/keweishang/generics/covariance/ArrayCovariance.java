@@ -1,7 +1,9 @@
 package io.keweishang.generics.covariance;
 
 /**
- * Demo of Java Array's covariance
+ * Demo of Java Array's covariance.
+ * <p>
+ * Arrays in Java are covariant.
  * <p>
  * Created by kshang on 12/01/2017.
  */
