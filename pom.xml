@@ -12,6 +12,7 @@
         <module>algorithm</module>
         <module>datastructure</module>
         <module>nio</module>
+        <module>generics</module>
     </modules>
 
     <properties>
