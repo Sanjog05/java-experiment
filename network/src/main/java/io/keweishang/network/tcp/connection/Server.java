@@ -21,7 +21,7 @@ public class Server {
     System.out.println("Server starts accepting connection requests.");
     do {
       Socket connection = serverSocket.accept();
-      // each TCP connection in the same server process has different port.
+      // each TCP connection in the same server process has same port.
       System.out.printf("The %d-th connection local socket address = %s\n", ++numConnections, connection.getLocalSocketAddress());
       connections.add(connection);
     } while (numConnections < 5);
