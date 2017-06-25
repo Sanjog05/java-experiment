@@ -13,6 +13,7 @@
         <module>datastructure</module>
         <module>nio</module>
         <module>generics</module>
+        <module>network</module>
     </modules>
 
     <properties>
