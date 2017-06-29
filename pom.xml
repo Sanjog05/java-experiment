@@ -14,6 +14,7 @@
         <module>nio</module>
         <module>generics</module>
         <module>network</module>
+        <module>concurrency</module>
     </modules>
 
     <properties>
