@@ -15,6 +15,7 @@
         <module>generics</module>
         <module>network</module>
         <module>concurrency</module>
+        <module>oop</module>
     </modules>
 
     <properties>
