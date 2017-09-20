@@ -16,6 +16,7 @@
         <module>network</module>
         <module>concurrency</module>
         <module>oop</module>
+        <module>performance</module>
     </modules>
 
     <properties>
