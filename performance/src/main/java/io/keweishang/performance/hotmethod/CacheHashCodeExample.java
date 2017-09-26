@@ -12,6 +12,7 @@ import java.util.Map;
  * where N is the time complexity of computing a traveller's hashcode.
  * <p>
  * We can use jmc to see the hot methods section and understand where the application spent most of its time.
+ * Add the following JVM options when launching JVM to enable flight recorder: -XX:+UnlockCommercialFeatures -XX:+FlightRecorder.
  * Refer to the file under resource folder: flight_recording_180112CacheHashCodeExample18445.jfr
  */
 public class CacheHashCodeExample {
