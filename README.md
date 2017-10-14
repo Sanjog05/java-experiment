@@ -1,7 +1,7 @@
 [![Build Status][travis-img]][travis]
 
 # java-experiment
-Little experiments on Java features
+Little experiments on Java features.
 
 
 # Best Practises
