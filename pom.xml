@@ -17,6 +17,7 @@
         <module>concurrency</module>
         <module>oop</module>
         <module>performance</module>
+        <module>avro</module>
     </modules>
 
     <properties>
