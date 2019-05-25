@@ -18,6 +18,7 @@
         <module>oop</module>
         <module>performance</module>
         <module>avro</module>
+        <module>softreference</module>
     </modules>
 
     <properties>
