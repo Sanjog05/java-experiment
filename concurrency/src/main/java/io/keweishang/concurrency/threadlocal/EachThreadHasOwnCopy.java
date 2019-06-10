@@ -1,27 +1,43 @@
 package io.keweishang.concurrency.threadlocal;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 public class EachThreadHasOwnCopy {
     public static void main(String[] args) {
         final ThreadLocal<Integer> perThreadCounter = new ThreadLocal();
 
         Thread t1 = new Thread(() -> {
-            perThreadCounter.set(0);
-            while (perThreadCounter.get() < 1000) {
-                System.out.println(perThreadCounter.get());
-                perThreadCounter.set(perThreadCounter.get() + 1);
-            }
+            Calendar c = CalendarFactory.getFactory().getCalendar();
+            System.out.println(c.getTimeZone().getDisplayName());
         });
 
         Thread t2 = new Thread(() -> {
-            perThreadCounter.set(new Integer(0));
-            while (perThreadCounter.get() < 1000) {
-                System.out.println(perThreadCounter.get());
-                perThreadCounter.set(perThreadCounter.get() + 1);
-            }
+            Calendar c = CalendarFactory.getFactory().getCalendar();
+            System.out.println(c.getTimeZone().getDisplayName());
         });
 
-        // both threads will count from 0 to 999, each thread owns its own counter, no race condition
+        // Both thread initialize and use their own value
         t1.start();
         t2.start();
+    }
+
+    static public class CalendarFactory {
+        private ThreadLocal<Calendar> calendarRef = new ThreadLocal<Calendar>() {
+            protected Calendar initialValue() {
+                System.out.printf("Thread %s is initializing value.\n", Thread.currentThread().getName());
+                return new GregorianCalendar();
+            }
+        };
+        private static CalendarFactory instance = new CalendarFactory();
+
+        public static CalendarFactory getFactory() { return instance; }
+
+        public Calendar getCalendar() {
+            return calendarRef.get();
+        }
+
+        // Don't let outsiders create new factories directly
+        private CalendarFactory() {}
     }
 }
