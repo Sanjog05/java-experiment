@@ -8,9 +8,14 @@ public class FileExample {
     public static void main(String[] args) throws IOException {
         // absolute path
         printFile("/foo/bar/my_absolute_file");
+        // case where canonical != absolute
+        printFile("/foo/bar/../baz/my_absolute_file");
 
         // relative path
         printFile("my_relative_file");
+        // cases where canonical != absolute
+        printFile(".");
+        printFile("..");
     }
 
     private static void printFile(String path) throws IOException {
