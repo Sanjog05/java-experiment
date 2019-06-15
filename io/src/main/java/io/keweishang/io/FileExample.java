@@ -16,6 +16,8 @@ public class FileExample {
         // cases where canonical != absolute
         printFile(".");
         printFile("..");
+        // case of empty path
+        printFile("");
     }
 
     private static void printFile(String path) throws IOException {
