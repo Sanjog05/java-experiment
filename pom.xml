@@ -20,6 +20,7 @@
         <module>avro</module>
         <module>softreference</module>
         <module>exception</module>
+        <module>io</module>
     </modules>
 
     <properties>
