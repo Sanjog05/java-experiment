@@ -10,7 +10,7 @@ import org.apache.avro.specific.SpecificDatumWriter;
 import java.io.File;
 import java.io.IOException;
 
-public class AvroApp {
+public class GeneratedAvroApp {
     public static void main(String args[]) throws IOException {
         String file = "users.avro";
         writeToAvroFile(file);
