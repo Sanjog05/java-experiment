@@ -21,6 +21,7 @@
         <module>softreference</module>
         <module>exception</module>
         <module>io</module>
+        <module>grpc</module>
     </modules>
 
     <properties>
