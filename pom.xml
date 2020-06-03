@@ -22,6 +22,7 @@
         <module>exception</module>
         <module>io</module>
         <module>grpc</module>
+        <module>mysql-binlog-connector</module>
     </modules>
 
     <properties>
