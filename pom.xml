@@ -23,6 +23,7 @@
         <module>io</module>
         <module>grpc</module>
         <module>mysql-binlog-connector</module>
+        <module>redshift</module>
     </modules>
 
     <properties>
