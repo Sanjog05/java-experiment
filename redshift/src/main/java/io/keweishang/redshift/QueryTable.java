@@ -1,17 +1,55 @@
 package io.keweishang.redshift;
 
+import org.apache.commons.cli.*;
+
 import java.sql.*;
 import java.util.*;
 
 public class QueryTable {
 
-  public static void main(String[] args) throws SQLException {
+  private static final String CLI_ARG_USER = "user";
+  private static final String CLI_ARG_PASSWORD = "password";
+  private static final String CLI_ARG_RESHIFT_HOST = "host";
+  private static final String CLI_ARG_RESHIFT_PORT = "port";
+  private static final String CLI_ARG_RESHIFT_DB = "database";
+  private static final String CLI_ARG_RESHIFT_SCHEMA = "schema";
+  private static final String CLI_ARG_RESHIFT_TABLE = "table";
+
+  private static final String DEFAULT_DB = "live";
+  private static final String DEFAULT_SCHEMA = "public";
+
+  /**
+   * --user=[user] --password=[password] --host=[host] --port=[port] --database=[dataabse]
+   * --schema=[schema] --table=[table]
+   *
+   * <p>or
+   *
+   * <p>--user=[user] --password=[password] --host=[host] --port=[port] --table=[table]
+   */
+  public static void main(String[] args) throws Exception {
+    CommandLineParser parser = new DefaultParser();
+    CommandLine cmd = parser.parse(options(), args);
+    String db =
+        cmd.getOptionValue(CLI_ARG_RESHIFT_DB) != null
+            ? cmd.getOptionValue(CLI_ARG_RESHIFT_DB)
+            : DEFAULT_DB;
+    String schema =
+        cmd.getOptionValue(CLI_ARG_RESHIFT_SCHEMA) != null
+            ? cmd.getOptionValue(CLI_ARG_RESHIFT_SCHEMA)
+            : DEFAULT_SCHEMA;
+
     DriverManager.registerDriver(new com.amazon.redshift.jdbc42.Driver());
     Properties driverProperties = new Properties();
-    driverProperties.put("user", "foo");
-    driverProperties.put("password", "bar");
-    String redshiftUrl = "jdbc:redshift://hostname:5439/mydb";
-    String fullTableName = "schemaName.tableName";
+    driverProperties.put("user", cmd.getOptionValue(CLI_ARG_USER));
+    driverProperties.put("password", cmd.getOptionValue(CLI_ARG_PASSWORD));
+    String redshiftUrl =
+        "jdbc:redshift://"
+            + cmd.getOptionValue(CLI_ARG_RESHIFT_HOST)
+            + ":"
+            + cmd.getOptionValue(CLI_ARG_RESHIFT_PORT)
+            + "/"
+            + db;
+    String fullTableName = schema + "." + cmd.getOptionValue(CLI_ARG_RESHIFT_TABLE);
 
     try (Connection connection = DriverManager.getConnection(redshiftUrl, driverProperties);
         Statement stmt = connection.createStatement()) {
@@ -153,5 +191,57 @@ public class QueryTable {
           rs.getBoolean(4));
     }
     return null;
+  }
+
+  private static Options options() {
+    Options options = new Options();
+    options.addOption(
+        Option.builder("u")
+            .longOpt(CLI_ARG_USER)
+            .desc("[REQUIRED] redshift user")
+            .hasArg()
+            .required()
+            .build());
+    options.addOption(
+        Option.builder("p")
+            .longOpt(CLI_ARG_PASSWORD)
+            .desc("[REQUIRED] redshift password")
+            .hasArg()
+            .required()
+            .build());
+    options.addOption(
+        Option.builder("h")
+            .longOpt(CLI_ARG_RESHIFT_HOST)
+            .desc("[REQUIRED] redshift host")
+            .hasArg()
+            .required()
+            .build());
+    options.addOption(
+        Option.builder("o")
+            .longOpt(CLI_ARG_RESHIFT_PORT)
+            .desc("[REQUIRED] redshift port")
+            .hasArg()
+            .required()
+            .build());
+    options.addOption(
+        Option.builder("d")
+            .longOpt(CLI_ARG_RESHIFT_DB)
+            .desc("[REQUIRED] redshift db")
+            .hasArg()
+            .build());
+    options.addOption(
+        Option.builder("s")
+            .longOpt(CLI_ARG_RESHIFT_SCHEMA)
+            .desc("[REQUIRED] redshift schema")
+            .hasArg()
+            .build());
+    options.addOption(
+        Option.builder("t")
+            .longOpt(CLI_ARG_RESHIFT_TABLE)
+            .desc("[REQUIRED] redshift table")
+            .hasArg()
+            .required()
+            .build());
+    return options;
   }
 }
