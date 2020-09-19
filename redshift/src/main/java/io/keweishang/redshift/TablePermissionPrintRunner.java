@@ -5,7 +5,7 @@ import org.apache.commons.cli.*;
 import java.sql.*;
 import java.util.*;
 
-public class QueryTable {
+public class TablePermissionPrintRunner {
 
   private static final String CLI_ARG_USER = "user";
   private static final String CLI_ARG_PASSWORD = "password";
@@ -22,9 +22,16 @@ public class QueryTable {
    * --user=[user] --password=[password] --host=[host] --port=[port] --database=[dataabse]
    * --schema=[schema] --table=[table]
    *
+   * <p>e.g. --user=taxify_kewei_shang --password=[password] --host=redshift.internal --port=5439
+   * --database=live --schema=public --table=fleet_driver_registration_log
+   *
    * <p>or
    *
-   * <p>--user=[user] --password=[password] --host=[host] --port=[port] --table=[table]
+   * <p>--user=[user] --password=[password] --host=[host] --port=[port] --table=[table], then the
+   * default database is live and the default schema is public.
+   *
+   * <p>e.g. --user=taxify_kewei_shang --password=[password] --host=redshift.internal --port=5439
+   * --table=fleet_driver_registration_log
    */
   public static void main(String[] args) throws Exception {
     CommandLineParser parser = new DefaultParser();
@@ -134,12 +141,12 @@ public class QueryTable {
 
       System.out.println(
           String.format(
-              "Grant permission to [%s] to individual users: [%d]",
+              "Grant permission to [%s] to number of individual users: [%d]",
               fullTableName, userPermissionsResult.size()));
 
       System.out.println(
           String.format(
-              "Grant permission to [%s] to groups: [%d]",
+              "Grant permission to [%s] to number of groups: [%d]",
               fullTableName, groupPermissionsMap.size()));
 
       Collections.sort(userPermissionsResult);
