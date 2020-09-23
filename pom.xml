@@ -24,6 +24,7 @@
         <module>grpc</module>
         <module>mysql-binlog-connector</module>
         <module>redshift</module>
+        <module>regex</module>
     </modules>
 
     <properties>
