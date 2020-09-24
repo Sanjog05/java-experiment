@@ -25,6 +25,7 @@
         <module>mysql-binlog-connector</module>
         <module>redshift</module>
         <module>regex</module>
+        <module>vitess-grpc</module>
     </modules>
 
     <properties>
