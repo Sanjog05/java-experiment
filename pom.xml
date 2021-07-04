@@ -28,6 +28,7 @@
         <module>vitess-grpc</module>
         <module>gson</module>
         <module>mysql-client</module>
+        <module>pinot</module>
     </modules>
 
     <properties>
