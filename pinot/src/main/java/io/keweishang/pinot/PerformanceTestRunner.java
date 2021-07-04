@@ -5,6 +5,9 @@ import org.apache.pinot.client.*;
 import java.util.Random;
 import java.util.concurrent.*;
 
+/**
+ * Test query latency under different QPS
+ */
 public class PerformanceTestRunner {
   public static void main(String[] args) {
     final BlockingQueue<String> queryQueue = new LinkedBlockingQueue<>();
